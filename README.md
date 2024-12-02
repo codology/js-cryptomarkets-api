@@ -64,6 +64,6 @@ Access the API at http://localhost:3000/exchange-rates with a valid JWT token in
 
 ## Logs (Optional)
 You can view logs from your containers using:
-* Node.js App logs: docker logs -f crypto-api-gateway
-* Prometheus logs: docker logs -f prometheus
-* Grafana logs: docker logs -f grafana
+* Node.js App logs: `docker logs -f crypto-api-gateway`
+* Prometheus logs: `docker logs -f prometheus`
+* Grafana logs: `docker logs -f grafana`
