@@ -29,9 +29,10 @@ This Node.js application serves as an API Gateway that retrieves cryptocurrency 
 ```
 The API will be accessible at http://localhost:3000.
 
-**`/login` endpoint**: This new endpoint accepts a `POST` request with a `username` and `password`. If the credentials are correct it generates a JWT token that is sent back in the response.
+- **`/login` endpoint**: This new endpoint accepts a `POST` request with a `username` and `password`. If the credentials are correct it generates a JWT token that is sent back in the response.
 
 - **`/exchange-rates` endpoint**: This endpoint now requires a valid JWT token in the `Authorization` header, which is validated by the `authMiddleware`.
+
 - **JWT token**: The generated token is valid for 1 hour and contains the `username` as part of its payload.
 
 ## Metrics
