@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s  # Scrape every 15 seconds
+
+scrape_configs:
+  - job_name: 'crypto-api-gateway'
+    static_configs:
+      - targets: ['crypto-api-gateway:3000']

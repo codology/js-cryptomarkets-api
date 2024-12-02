@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  # Node.js application (your API gateway)
+  crypto-api-gateway:
+    build: .
+    container_name: crypto-api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - JWT_SECRET=your_jwt_secret
+      - COINCAP_API_URL=https://api.coincap.io/v2
+      - PORT=3000
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+
+  # Prometheus for scraping the metrics from Node.js
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+    restart: always
+
+  # Grafana for visualizing the metrics
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: 'admin' # Default admin password
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+    restart: always
+
+networks:
+  monitoring:
+    driver: bridge
